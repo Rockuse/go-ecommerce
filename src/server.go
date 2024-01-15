@@ -29,7 +29,3 @@ func (s *Server) RoutesInit() {
 		return c.SendString("Hello, World!")
 	})
 }
-
-func (s *Server) DBInit() {
-
-}
