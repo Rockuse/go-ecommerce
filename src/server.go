@@ -2,15 +2,18 @@ package server
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
 )
 
 type Server struct {
 	engine *fiber.App
+	db     *gorm.DB
 }
 
-func NewServer() *Server {
+func NewServer(dbConnection *gorm.DB) *Server {
 	return &Server{
 		engine: fiber.New(),
+		db:     dbConnection,
 	}
 }
 
