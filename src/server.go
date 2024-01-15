@@ -15,6 +15,7 @@ func NewServer() *Server {
 }
 
 func (s *Server) Run() error {
+	s.RoutesInit()
 	return s.engine.Listen(":3000")
 }
 
@@ -24,4 +25,8 @@ func (s *Server) RoutesInit() {
 	api.Get("/test", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World!")
 	})
+}
+
+func (s *Server) DBInit() {
+
 }
