@@ -16,12 +16,12 @@ func NewRepository(db *gorm.DB) *repository {
 	return &repository{db}
 }
 
-func (r *repository) Save(user User) (User, error) {
+func (r *repository) Save(user *User) error {
 	err := r.db.Save(user).Error
 	if err != nil {
-		return user, err
+		return err
 	}
-	return user, nil
+	return nil
 }
 
 func (r *repository) FindById(id int) (User, error) {
