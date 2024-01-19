@@ -33,7 +33,7 @@ func (s *service) RegisterUser(input UserInput) (User, error) {
 		CreatedDate: time.Now(),
 		CreatedBy:   int(uuid.New().ID()),
 	}
-	err = s.repository.Save()
+	err = s.repository.Save(&user)
 	if err != nil {
 		return user, nil
 	}
