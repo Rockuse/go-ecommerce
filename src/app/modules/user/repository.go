@@ -3,8 +3,8 @@ package user
 import "gorm.io/gorm"
 
 type Repository interface {
-	Save(user *User)
-	FindByEmail(email string) (*User, error)
+	Save(user *User) error
+	// FindByEmail(email string) (*User, error)
 	FindById(id int) (User, error)
 }
 
@@ -17,7 +17,7 @@ func NewRepository(db *gorm.DB) *repository {
 }
 
 func (r *repository) Save(user *User) error {
-	err := r.db.Save(user).Error
+	err := r.db.Save(&user).Error
 	if err != nil {
 		return err
 	}

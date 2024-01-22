@@ -11,11 +11,10 @@ var UserModule = Module{
 	Routes: func(api *fiber.Group, db *gorm.DB) {
 		userRepo := user.NewRepository(db)
 		userService := user.NewService(userRepo)
-		// userHandler:=user.
+		userHandler := user.NewHandler(userService)
 		userApi := api.Group("/user")
 
-		userApi.Get("/", func(c *fiber.Ctx) error {
-			return c.SendString("test")
-		})
+		userApi.Post("/", userHandler.Register)
+		// userApi.Get("/", userHandler.Login)
 	},
 }
