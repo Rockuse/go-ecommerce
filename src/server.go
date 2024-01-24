@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Rockuse/go-ecommerce/src/app/core/routes"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
 )
@@ -24,8 +25,11 @@ func (s *Server) Run() error {
 
 func (s *Server) RoutesInit() {
 	router := s.engine
-	api := router.Group("/api/v1")
-	api.Get("/test", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	api := router.Group("/api")
+	v1 := api.Group("/v1")
+	db := s.db
+	for _, m := range routes.RegisteredModules() {
+		m.Routes(&v1, db)
+	} 
+
 }
