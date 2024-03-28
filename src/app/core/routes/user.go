@@ -8,12 +8,11 @@ import (
 
 var UserModule = Module{
 	Name: "user",
-	Routes: func(api *fiber.Group, db *gorm.DB) {
+	Routes: func(Api *fiber.App, db *gorm.DB) {
 		userRepo := user.NewRepository(db)
 		userService := user.NewService(userRepo)
 		userHandler := user.NewHandler(userService)
-		userApi := api.Group("/user")
-
+		userApi := Api.Group("api/v1/user")
 		userApi.Post("/", userHandler.Register)
 		// userApi.Get("/", userHandler.Login)
 	},

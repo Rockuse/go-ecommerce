@@ -7,9 +7,9 @@ import (
 
 type Module struct {
 	Name   string
-	Routes func(*fiber.Group, *gorm.DB)
+	Routes func(*fiber.App, *gorm.DB)
 }
 
 func RegisteredModules() []Module {
-	return []Module{}
+	return []Module{UserModule}
 }
