@@ -2,7 +2,6 @@ package server
 
 import (
 	"github.com/Rockuse/go-ecommerce/src/app/core/routes"
-	"github.com/Rockuse/go-ecommerce/src/app/core/routes"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
 )
